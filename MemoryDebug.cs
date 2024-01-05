@@ -1,3 +1,5 @@
+namespace SunamoDebugging;
+
 #if MEMORYDEBUG
 public class MemoryDebug
 {

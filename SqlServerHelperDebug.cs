@@ -1,3 +1,5 @@
+namespace SunamoDebugging;
+
 public class SqlServerHelperDebug
 {
     static Type type = typeof(SqlServerHelperDebug);

@@ -1,3 +1,5 @@
+namespace SunamoDebugging;
+
 public class NameValueCollectionDebug
 {
     public static void Print(NameValueCollection nvc)

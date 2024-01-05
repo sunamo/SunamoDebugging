@@ -1,3 +1,5 @@
+namespace SunamoDebugging.System.Text;
+
 public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
 {
     //StringBuilder sb = new StringBuilder();
