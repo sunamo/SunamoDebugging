@@ -3,8 +3,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>24.1.8.1</Version>
-	  <Description>Some BCl+mine code's helper classes for easier debugging</Description>
+    <Version>24.1.10.1</Version>
+    <Description>Some BCl+mine code's helper classes for easier debugging</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>
@@ -13,8 +13,9 @@
     <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="SunamoDebugCollection" Version="24.1.7.1" />
-    <PackageReference Include="SunamoFileIO" Version="24.1.7.1" />
-    <PackageReference Include="SunamoValues" Version="24.1.9.2" />
+    <PackageReference Include="SunamoCollections" Version="24.1.10.1" />
+    <PackageReference Include="SunamoDebugCollection" Version="24.1.10.1" />
+    <PackageReference Include="SunamoFileIO" Version="24.1.12.3" />
+    <PackageReference Include="SunamoValues" Version="24.1.10.1" />
   </ItemGroup>
 </Project>
