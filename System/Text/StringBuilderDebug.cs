@@ -1,6 +1,3 @@
-using SunamoExceptions.OnlyInSE;
-using SunamoFileIO;
-
 namespace SunamoDebugging.System.Text;
 
 public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
@@ -49,7 +46,7 @@ public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
         CheckValidityWorker(checkValidity, fInvalidJs, s);
     }
 
-    public static async void CheckValidityWorker(Func<string, bool> checkValidity, string fInvalidJs, string s)
+    public static async Task CheckValidityWorker(Func<string, bool> checkValidity, string fInvalidJs, string s)
     {
         if (checkValidity != null)
         {
