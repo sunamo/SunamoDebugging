@@ -1,6 +1,9 @@
-namespace SunamoDebugging;
 
-#if MEMORYDEBUG
+namespace SunamoDebugging;
+using SunamoEnums.Enums;
+
+
+
 public class MemoryDebug
 {
     public static StreamWriter swAllocatedMemory;
@@ -12,7 +15,7 @@ public class MemoryDebug
         if (!initialized)
         {
             initialized = true;
-            TF.WriteAllText(p, string.Empty);
+            File.WriteAllTextAsync(p, string.Empty);
             swAllocatedMemory = new StreamWriter(p);
             swAllocatedMemory.AutoFlush = true;
         }
@@ -35,7 +38,6 @@ public class MemoryDebug
     public static void OverallConsumedByThisMethod()
     {
         var l = last - l2;
-        swAllocatedMemory.WriteLine("Difference between first and latest: " + FS.GetSizeInAutoString(l, ComputerSizeUnits.B));
+        //swAllocatedMemory.WriteLine("Difference between first and latest: " + FS.GetSizeInAutoString(l, ComputerSizeUnits.B));
     }
 }
-#endif

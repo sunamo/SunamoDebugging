@@ -1,4 +1,7 @@
+
 namespace SunamoDebugging.System.Text;
+using SunamoValues;
+
 
 public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug2>
 {
@@ -28,12 +31,12 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
         this.checkValidity = checkValidity;
         this.processBeforeValidity = processBeforeValidity;
         this.canAppend = canAppend;
-        if (checkValidity != null)
-        {
-            fInvalidJs = getFileAppData(AppFoldersStrings.Cache, "InvalidJs.js");
-            fActualJsAfterFormatting = getFileAppData(AppFoldersStrings.Cache, "ActualJsAfterFormatting.js");
-            fActualJsBeforeFormatting = getFileAppData(AppFoldersStrings.Cache, "ActualJsBeforeFormatting.js");
-        }
+        //if (checkValidity != null)
+        //{
+        //    fInvalidJs = getFileAppData(AppFoldersStrings.Cache, "InvalidJs.js");
+        //    fActualJsAfterFormatting = getFileAppData(AppFoldersStrings.Cache, "ActualJsAfterFormatting.js");
+        //    fActualJsBeforeFormatting = getFileAppData(AppFoldersStrings.Cache, "ActualJsBeforeFormatting.js");
+        //}
     }
 
 #if DEBUG
@@ -41,7 +44,7 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
     {
         if (captureForAdding != null)
         {
-            if (CA.ContainsAnyFromElementBool(value, captureForAdding))
+            if (captureForAdding.Any(d => value.Contains(d))) //CA.ContainsAnyFromElementBool(value, captureForAdding))
             {
                 int i = 0;
                 if (value == "{")
@@ -98,7 +101,7 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
         processBeforeValidity(sb);
 
 #if DEBUG
-        TF.WriteAllText(fActualJsAfterFormatting, sb.ToString());
+        File.WriteAllText(fActualJsAfterFormatting, sb.ToString());
 #endif
 
         CheckValidity();

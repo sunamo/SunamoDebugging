@@ -1,4 +1,7 @@
+
 namespace SunamoDebugging.System.Text;
+using SunamoExceptions.OnlyInSE;
+
 
 public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
 {
@@ -52,7 +55,7 @@ public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
         {
             if (!checkValidity(s))
             {
-                await TF.WriteAllText(fInvalidJs, s);
+                await File.WriteAllTextAsync(fInvalidJs, s);
 
                 Debugger.Break();
                 checkValidity(s);

@@ -1,4 +1,7 @@
+
 namespace SunamoDebugging;
+using SunamoExceptions.OnlyInSE;
+
 
 public class SqlServerHelperDebug
 {
