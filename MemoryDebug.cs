@@ -1,9 +1,5 @@
 
 namespace SunamoDebugging;
-using SunamoEnums.Enums;
-
-
-
 public class MemoryDebug
 {
     public static StreamWriter swAllocatedMemory;
