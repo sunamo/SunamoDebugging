@@ -1,5 +1,5 @@
 
-namespace SunamoDebugging.System.Text;
+namespace SunamoDebugging;
 using SunamoExceptions.OnlyInSE;
 
 

@@ -1,4 +1,4 @@
-namespace SunamoDebugging.System.Text;
+namespace SunamoDebugging;
 
 public abstract  class DebugStringBuilderAbstract<T>
     {
