@@ -57,7 +57,7 @@ public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
             {
                 await File.WriteAllTextAsync(fInvalidJs, s);
 
-                Debugger.Break();
+                System.Diagnostics.Debugger.Break();
                 checkValidity(s);
 
                 ThrowEx.Format("Invalid JS, written to " + fInvalidJs);
