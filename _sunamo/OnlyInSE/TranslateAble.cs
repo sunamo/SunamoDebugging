@@ -1,3 +1,5 @@
+
+namespace SunamoDebugging;
 public class TranslateAble
 {
     
