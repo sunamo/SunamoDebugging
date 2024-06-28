@@ -1,7 +1,7 @@
 namespace SunamoDebugging;
 
 
-public enum ComputerSizeUnits : byte
+internal enum ComputerSizeUnits : byte
 {
     /// <summary>
     /// Když se má automaticky vyhodnotit nejsprávnější jednotka
