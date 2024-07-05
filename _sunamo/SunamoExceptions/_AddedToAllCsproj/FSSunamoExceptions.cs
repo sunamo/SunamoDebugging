@@ -1,10 +1,6 @@
 
-namespace SunamoDebugging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace SunamoDebugging._sunamo.SunamoExceptions._AddedToAllCsproj;
+
 internal class FSSunamoExceptions
 {
     internal static void CreateUpfoldersPsysicallyUnlessThere(string nad)
@@ -26,7 +22,7 @@ nad
         while (true)
         {
             nad = Path.GetDirectoryName(nad);
-            
+
             if (Directory.Exists(nad))
             {
                 break;

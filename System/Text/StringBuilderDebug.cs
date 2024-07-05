@@ -1,5 +1,5 @@
 
-namespace SunamoDebugging;
+namespace SunamoDebugging.System.Text;
 
 
 
@@ -57,7 +57,7 @@ public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
             {
                 await File.WriteAllTextAsync(fInvalidJs, s);
 
-                System.Diagnostics.Debugger.Break();
+                Debugger.Break();
                 checkValidity(s);
 
                 ThrowEx.Format("Invalid JS, written to " + fInvalidJs);

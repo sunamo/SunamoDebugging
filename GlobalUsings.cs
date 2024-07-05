@@ -8,6 +8,12 @@ global using System.Collections.Specialized;
 global using System.Collections.Generic;
 global using System.Collections;
 global using System.Linq;
-
 global using System.Diagnostics.CodeAnalysis;
 global using System.Reflection;
+global using SunamoDebugging;
+global using SunamoDebugging.System.Text;
+global using SunamoDebugging._sunamo.SunamoStringGetLines;
+global using SunamoDebugging._sunamo.SunamoValues;
+global using SunamoDebugging._sunamo.SunamoXlfKeys;
+global using SunamoDebugging._sunamo.SunamoExceptions.OnlyInSE;
+global using SunamoDebugging._sunamo.SunamoExceptions._AddedToAllCsproj;

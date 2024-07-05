@@ -1,5 +1,5 @@
 
-namespace SunamoDebugging;
+namespace SunamoDebugging.System.Text;
 
 
 
