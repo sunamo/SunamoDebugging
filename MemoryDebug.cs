@@ -1,4 +1,3 @@
-
 namespace SunamoDebugging;
 public class MemoryDebug
 {

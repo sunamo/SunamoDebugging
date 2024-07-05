@@ -1,4 +1,3 @@
-
 namespace SunamoDebugging._sunamo.SunamoValues;
 internal class AllStrings
 {

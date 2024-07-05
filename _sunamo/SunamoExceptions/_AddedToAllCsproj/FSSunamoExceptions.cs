@@ -1,4 +1,3 @@
-
 namespace SunamoDebugging._sunamo.SunamoExceptions._AddedToAllCsproj;
 
 internal class FSSunamoExceptions
