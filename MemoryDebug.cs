@@ -10,7 +10,7 @@ public class MemoryDebug
         if (!initialized)
         {
             initialized = true;
-            File.WriteAllTextAsync(p, string.Empty);
+            File.WriteAllText(p, string.Empty);
             swAllocatedMemory = new StreamWriter(p);
             swAllocatedMemory.AutoFlush = true;
         }
