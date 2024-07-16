@@ -1,7 +1,5 @@
 namespace SunamoDebugging.System.Text;
 
-
-
 public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug2>
 {
     StringBuilder sb = new StringBuilder();
