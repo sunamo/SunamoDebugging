@@ -80,7 +80,7 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
             sb = Append(value);
         }
 
-        if (value.Trim().TrimEnd(AllChars.comma) == AllStrings.rcub)
+        if (value.Trim().TrimEnd(',') == "}")
         {
 
         }
