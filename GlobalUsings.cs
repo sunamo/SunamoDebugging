@@ -10,3 +10,4 @@ global using System.Linq;
 global using System.Reflection;
 global using SunamoDebugging._sunamo.SunamoExceptions;
 global using System.Net;
+global using System.Diagnostics.CodeAnalysis;

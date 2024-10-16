@@ -49,7 +49,7 @@ internal sealed partial class Exceptions
     }
     internal static string? WrongExtension(string before, string path, string ext)
     {
-        return Path.GetExtension(path) != ext ? CheckBefore(before) + path + "don't have " + ext + " extension" : null;
+        return System.IO.Path.GetExtension(path) != ext ? CheckBefore(before) + path + "don't have " + ext + " extension" : null;
     }
     internal static string? WrongNumberOfElements(string before, int requireElements, string nameCount,
     IEnumerable<string> ele)
