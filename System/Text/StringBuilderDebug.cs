@@ -43,9 +43,9 @@ public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
         return this;
     }
 
-    public void CheckValidity()
+    public async Task CheckValidity()
     {
-        CheckValidityWorker(checkValidity, fInvalidJs, s);
+        await CheckValidityWorker(checkValidity, fInvalidJs, s);
     }
 
     public static async Task CheckValidityWorker(Func<string, bool> checkValidity, string fInvalidJs, string s)
@@ -56,10 +56,7 @@ public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
             {
                 await File.WriteAllTextAsync(fInvalidJs, s);
 
-                Debugger.Break();
-                checkValidity(s);
-
-                ThrowEx.Format("Invalid JS, written to " + fInvalidJs);
+                ThrowEx.Custom("Invalid JS, written to " + fInvalidJs);
             }
         }
     }
