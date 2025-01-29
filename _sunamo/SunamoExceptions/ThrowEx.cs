@@ -2,8 +2,6 @@ namespace SunamoDebugging._sunamo.SunamoExceptions;
 internal partial class ThrowEx
 {
 
-    internal static bool IsNullOrEmpty(string argName, string argValue)
-    { return ThrowIsNotNull(Exceptions.IsNullOrWhitespace(FullNameOfExecutedCode(), argName, argValue, true)); }
     internal static bool NotImplementedMethod() { return ThrowIsNotNull(Exceptions.NotImplementedMethod); }
 
     #region Other
