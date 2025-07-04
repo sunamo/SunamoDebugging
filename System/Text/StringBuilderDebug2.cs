@@ -23,7 +23,7 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
 
     }
 
-    public StringBuilderDebug2(Func<string, bool> checkValidity, Func<string, string, string> getFileAppData, Action<StringBuilder> processBeforeValidity, Func<StringBuilder, string, bool> canAppend)
+    public StringBuilderDebug2(Func<string, bool> checkValidity, Action<StringBuilder> processBeforeValidity, Func<StringBuilder, string, bool> canAppend)
     {
         this.checkValidity = checkValidity;
         this.processBeforeValidity = processBeforeValidity;
