@@ -13,9 +13,9 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
     public int actualLine = 0;
     public int lastWrittenLine = -1;
 
-    public async Task CheckValidity()
+    public void CheckValidity()
     {
-        await StringBuilderDebug.CheckValidityWorker(checkValidity, fInvalidJs, sb.ToString());
+        StringBuilderDebug.CheckValidityWorker(checkValidity, fInvalidJs, sb.ToString());
     }
 
     public StringBuilderDebug2()

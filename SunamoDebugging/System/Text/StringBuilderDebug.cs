@@ -43,18 +43,19 @@ public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
         return this;
     }
 
-    public async Task CheckValidity()
+    public void CheckValidity()
     {
-        await CheckValidityWorker(checkValidity, fInvalidJs, s);
+        CheckValidityWorker(checkValidity, fInvalidJs, s);
     }
 
-    public static async Task CheckValidityWorker(Func<string, bool> checkValidity, string fInvalidJs, string s)
+    public static void CheckValidityWorker(Func<string, bool> checkValidity, string fInvalidJs, string s)
     {
         if (checkValidity != null)
         {
             if (!checkValidity(s))
             {
-                await File.WriteAllTextAsync(fInvalidJs, s);
+                // Zde je lepší sync metoda
+                File.WriteAllText(fInvalidJs, s);
 
                 ThrowEx.Custom("Invalid JS, written to " + fInvalidJs);
             }
