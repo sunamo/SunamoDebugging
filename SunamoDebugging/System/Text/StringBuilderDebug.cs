@@ -1,3 +1,5 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoDebugging.System.Text;
 
 
@@ -54,7 +56,7 @@ public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
         {
             if (!checkValidity(s))
             {
-                // Zde je lep�� sync metoda
+                // Zde je lep�� sync metoda
                 File.WriteAllText(fInvalidJs, s);
 
                 ThrowEx.Custom("Invalid JS, written to " + fInvalidJs);

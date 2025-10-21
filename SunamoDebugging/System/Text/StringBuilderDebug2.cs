@@ -1,8 +1,11 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoDebugging.System.Text;
 
 public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug2>
 {
-    StringBuilder sb = new StringBuilder();
+    StringBuilder stringBuilder = new StringBuilder();
     public static List<string> captureForAdding = null;
     Func<string, bool> checkValidity;
     Action<StringBuilder> processBeforeValidity;
@@ -15,7 +18,7 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
 
     public void CheckValidity()
     {
-        StringBuilderDebug.CheckValidityWorker(checkValidity, fInvalidJs, sb.ToString());
+        StringBuilderDebug.CheckValidityWorker(checkValidity, fInvalidJs, stringBuilder.ToString());
     }
 
     public StringBuilderDebug2()
@@ -55,13 +58,13 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
 
     public override StringBuilderDebug2 AppendLine()
     {
-        sb.AppendLine();
+        stringBuilder.AppendLine();
         return this;
     }
 
     public override StringBuilderDebug2 AppendLine(string value)
     {
-        return Append(sb.AppendLine, value);
+        return Append(stringBuilder.AppendLine, value);
     }
 
     private StringBuilderDebug2 Append(Func<string, StringBuilder> Append, string value)
@@ -73,11 +76,11 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
 #if DEBUG
         CheckForSearchingTerms(value);
 #endif
-        bool ca = canAppend(sb, value);
+        bool ca = canAppend(stringBuilder, value);
         if (ca)
         {
             lastWrittenLine = actualLine;
-            sb = Append(value);
+            stringBuilder = Append(value);
         }
 
         if (value.Trim().TrimEnd(',') == "}")
@@ -90,15 +93,15 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
 
         }
 
-        if (sb.ToString().Contains("methods:"))
+        if (stringBuilder.ToString().Contains("methods:"))
         {
 
         }
 
-        processBeforeValidity(sb);
+        processBeforeValidity(stringBuilder);
 
 #if DEBUG
-        File.WriteAllText(fActualJsAfterFormatting, sb.ToString());
+        File.WriteAllText(fActualJsAfterFormatting, stringBuilder.ToString());
 #endif
 
         CheckValidity();
@@ -107,18 +110,18 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
 
     public override StringBuilderDebug2 Append(string value)
     {
-        return Append(sb.Append, value);
+        return Append(stringBuilder.Append, value);
     }
 
     public override StringBuilderDebug2 Clear()
     {
-        sb.Clear();
+        stringBuilder.Clear();
         return this;
     }
 
     public override string ToString()
     {
-        var r = sb.ToString();
-        return r;
+        var result = stringBuilder.ToString();
+        return result;
     }
 }
