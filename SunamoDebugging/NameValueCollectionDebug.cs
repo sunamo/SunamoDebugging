@@ -2,13 +2,13 @@ namespace SunamoDebugging;
 
 public class NameValueCollectionDebug
 {
-    public static void Print(NameValueCollection nvc)
+    public static void Print(NameValueCollection collection)
     {
-        foreach (var item in nvc.AllKeys) d(item + ": " + nvc[item]);
+        foreach (var item in collection.AllKeys) WriteDebugLine(item + ": " + collection[item]);
     }
 
-    private static void d(string v)
+    private static void WriteDebugLine(string message)
     {
-        Debug.WriteLine(v);
+        Debug.WriteLine(message);
     }
 }

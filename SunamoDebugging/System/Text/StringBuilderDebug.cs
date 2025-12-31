@@ -2,12 +2,12 @@ namespace SunamoDebugging.System.Text;
 
 public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
 {
-    //StringBuilder sb = new StringBuilder();
-    string s = string.Empty;
-    public int Length => s.Length;
+    //StringBuilder stringBuilder = new StringBuilder();
+    string content = string.Empty;
+    public int Length => content.Length;
 
     Func<string, bool> checkValidity;
-    string fInvalidJs = null;
+    string invalidJavaScriptFilePath = null;
 
     public StringBuilderDebug()
     {
@@ -19,56 +19,56 @@ public class StringBuilderDebug : DebugStringBuilderAbstract<StringBuilderDebug>
         this.checkValidity = checkValidity;
         if (checkValidity != null)
         {
-            fInvalidJs = getFileAppData("InvalidJs.js");
+            invalidJavaScriptFilePath = getFileAppData("InvalidJs.js");
         }
     }
 
     public override string ToString()
     {
-        return s;
+        return content;
     }
 
     public override StringBuilderDebug AppendLine()
     {
-        s += Environment.NewLine;
+        content += Environment.NewLine;
         return this;
     }
 
     public override StringBuilderDebug AppendLine(string value)
     {
-        s += value + Environment.NewLine;
+        content += value + Environment.NewLine;
         CheckValidity();
         return this;
     }
 
     public void CheckValidity()
     {
-        CheckValidityWorker(checkValidity, fInvalidJs, s);
+        CheckValidityWorker(checkValidity, invalidJavaScriptFilePath, content);
     }
 
-    public static void CheckValidityWorker(Func<string, bool> checkValidity, string fInvalidJs, string s)
+    public static void CheckValidityWorker(Func<string, bool> checkValidity, string invalidJavaScriptFilePath, string content)
     {
         if (checkValidity != null)
         {
-            if (!checkValidity(s))
+            if (!checkValidity(content))
             {
                 // Zde je lep�� sync metoda
-                File.WriteAllText(fInvalidJs, s);
+                File.WriteAllText(invalidJavaScriptFilePath, content);
 
-                ThrowEx.Custom("Invalid JS, written to " + fInvalidJs);
+                ThrowEx.Custom("Invalid JS, written to " + invalidJavaScriptFilePath);
             }
         }
     }
 
     public override StringBuilderDebug Clear()
     {
-        s = string.Empty;
+        content = string.Empty;
         return this;
     }
 
     public override StringBuilderDebug Append(string value)
     {
-        s += value;
+        content += value;
         CheckValidity();
         return this;
     }

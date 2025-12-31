@@ -57,7 +57,7 @@ public abstract  class DebugStringBuilderAbstract<T>
         public abstract T Clear();
     //public abstract void CopyTo(int sourceIndex, char[] destination, int destinationIndex, int count);
     //public abstract int EnsureCapacity(int capacity);
-    //public abstract bool Equals(StringBuilder sb);
+    //public abstract bool Equals(StringBuilder stringBuilder);
 
     #region Insert
     //public abstract T Insert(int index, object value);

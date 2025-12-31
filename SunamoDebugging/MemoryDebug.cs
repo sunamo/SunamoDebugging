@@ -2,35 +2,35 @@ namespace SunamoDebugging;
 
 public class MemoryDebug
 {
-    public static StreamWriter swAllocatedMemory;
-    public static bool initialized;
+    public static StreamWriter AllocatedMemoryWriter;
+    public static bool Initialized;
 
-    private static long l2;
-    private static long last;
+    private static long firstMemoryValue;
+    private static long lastMemoryValue;
 
-    public static void Init(string pathWithoutFn)
+    public static void Init(string directoryPath)
     {
-        var path = Path.Combine(pathWithoutFn, "AllocatedMemory.txt");
-        if (!initialized)
+        var path = Path.Combine(directoryPath, "AllocatedMemory.txt");
+        if (!Initialized)
         {
-            initialized = true;
+            Initialized = true;
             File.WriteAllText(path, string.Empty);
-            swAllocatedMemory = new StreamWriter(path);
-            swAllocatedMemory.AutoFlush = true;
+            AllocatedMemoryWriter = new StreamWriter(path);
+            AllocatedMemoryWriter.AutoFlush = true;
         }
     }
 
-    public static void WriteLine(long list)
+    public static void WriteLine(long memoryValue)
     {
-        if (l2 == 0) l2 = list;
-        swAllocatedMemory.WriteLine(list);
+        if (firstMemoryValue == 0) firstMemoryValue = memoryValue;
+        AllocatedMemoryWriter.WriteLine(memoryValue);
 
-        last = list;
+        lastMemoryValue = memoryValue;
     }
 
     public static void OverallConsumedByThisMethod()
     {
-        var list = last - l2;
-        //swAllocatedMemory.WriteLine("Difference between first and latest: " + FS.GetSizeInAutoString(list, ComputerSizeUnits.B));
+        var memoryDifference = lastMemoryValue - firstMemoryValue;
+        //AllocatedMemoryWriter.WriteLine("Difference between first and latest: " + FS.GetSizeInAutoString(memoryDifference, ComputerSizeUnits.B));
     }
 }

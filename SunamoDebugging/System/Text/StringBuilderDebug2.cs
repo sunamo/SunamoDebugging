@@ -3,19 +3,19 @@ namespace SunamoDebugging.System.Text;
 public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug2>
 {
     StringBuilder stringBuilder = new StringBuilder();
-    public static List<string> captureForAdding = null;
+    public static List<string> CaptureForAdding { get; set; } = null;
     Func<string, bool> checkValidity;
     Action<StringBuilder> processBeforeValidity;
-    string fInvalidJs = null;
-    public string fActualJsAfterFormatting = null;
-    public string fActualJsBeforeFormatting = null;
+    string invalidJavaScriptFilePath = null;
+    public string ActualJavaScriptAfterFormattingFilePath { get; set; } = null;
+    public string ActualJavaScriptBeforeFormattingFilePath { get; set; } = null;
     Func<StringBuilder, string, bool> canAppend;
-    public int actualLine = 0;
-    public int lastWrittenLine = -1;
+    public int ActualLine { get; set; } = 0;
+    public int LastWrittenLine { get; set; } = -1;
 
     public void CheckValidity()
     {
-        StringBuilderDebug.CheckValidityWorker(checkValidity, fInvalidJs, stringBuilder.ToString());
+        StringBuilderDebug.CheckValidityWorker(checkValidity, invalidJavaScriptFilePath, stringBuilder.ToString());
     }
 
     public StringBuilderDebug2()
@@ -30,18 +30,18 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
         this.canAppend = canAppend;
         //if (checkValidity != null)
         //{
-        //    fInvalidJs = getFileAppData(AppFoldersStrings.Cache, "InvalidJs.js");
-        //    fActualJsAfterFormatting = getFileAppData(AppFoldersStrings.Cache, "ActualJsAfterFormatting.js");
-        //    fActualJsBeforeFormatting = getFileAppData(AppFoldersStrings.Cache, "ActualJsBeforeFormatting.js");
+        //    invalidJavaScriptFilePath = getFileAppData(AppFoldersStrings.Cache, "InvalidJs.js");
+        //    ActualJavaScriptAfterFormattingFilePath = getFileAppData(AppFoldersStrings.Cache, "ActualJsAfterFormatting.js");
+        //    ActualJavaScriptBeforeFormattingFilePath = getFileAppData(AppFoldersStrings.Cache, "ActualJsBeforeFormatting.js");
         //}
     }
 
 #if DEBUG
     private void CheckForSearchingTerms(string value)
     {
-        if (captureForAdding != null)
+        if (CaptureForAdding != null)
         {
-            if (captureForAdding.Any(d => value.Contains(d))) //CA.ContainsAnyFromElementBool(value, captureForAdding))
+            if (CaptureForAdding.Any(searchTerm => value.Contains(searchTerm))) //CA.ContainsAnyFromElementBool(value, CaptureForAdding))
             {
                 int i = 0;
                 if (value == "{")
@@ -64,7 +64,7 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
         return Append(stringBuilder.AppendLine, value);
     }
 
-    private StringBuilderDebug2 Append(Func<string, StringBuilder> Append, string value)
+    private StringBuilderDebug2 Append(Func<string, StringBuilder> append, string value)
     {
         if (value.Contains("methods:"))
         {
@@ -73,11 +73,11 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
 #if DEBUG
         CheckForSearchingTerms(value);
 #endif
-        bool ca = canAppend(stringBuilder, value);
-        if (ca)
+        bool shouldAppend = canAppend(stringBuilder, value);
+        if (shouldAppend)
         {
-            lastWrittenLine = actualLine;
-            stringBuilder = Append(value);
+            LastWrittenLine = ActualLine;
+            stringBuilder = append(value);
         }
 
         if (value.Trim().TrimEnd(',') == "}")
@@ -98,7 +98,7 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
         processBeforeValidity(stringBuilder);
 
 #if DEBUG
-        File.WriteAllText(fActualJsAfterFormatting, stringBuilder.ToString());
+        File.WriteAllText(ActualJavaScriptAfterFormattingFilePath, stringBuilder.ToString());
 #endif
 
         CheckValidity();
