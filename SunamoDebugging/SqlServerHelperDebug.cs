@@ -9,9 +9,9 @@
 //    ///     nemohl bych tak používat SunamoDebugging in SunamoSqlServer
 //    ///     The same TextOutputGenerator in sunamo -
 //    /// </summary>
-//    /// <param name="l"></param>
+//    /// <param name="tableRowCounts"></param>
 //    /// <returns></returns>
-//    public static void RowsInTables(Dictionary<string, int> l)
+//    public static void RowsInTables(Dictionary<string, int> tableRowCounts)
 //    {
 //        ThrowEx.NotImplementedMethod();
 //    }
