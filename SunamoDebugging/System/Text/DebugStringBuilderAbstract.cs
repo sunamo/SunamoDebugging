@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoDebugging.System.Text;
 
 /// <summary>

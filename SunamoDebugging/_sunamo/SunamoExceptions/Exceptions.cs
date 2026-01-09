@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoDebugging._sunamo.SunamoExceptions;
 
 // © www.sunamo.cz. All Rights Reserved.
@@ -10,35 +11,35 @@ internal sealed partial class Exceptions
     /// <summary>
     /// Formats a prefix string for exception messages by appending ": " if the prefix is not empty.
     /// </summary>
-    /// <param name="before">The prefix string to check and format.</param>
+    /// <param name="prefix">The prefix string to check and format.</param>
     /// <returns>An empty string if the prefix is null or whitespace, otherwise the prefix followed by ": ".</returns>
-    internal static string CheckBefore(string before)
+    internal static string CheckBefore(string prefix)
     {
-        return string.IsNullOrWhiteSpace(before) ? string.Empty : before + ": ";
+        return string.IsNullOrWhiteSpace(prefix) ? string.Empty : prefix + ": ";
     }
 
     /// <summary>
     /// Extracts the location where an exception occurred from the stack trace.
     /// </summary>
-    /// <param name="shouldFillFirstTwo">If true, extracts the type and method name from the first non-ThrowEx frame.</param>
+    /// <param name="isShouldFillFirstTwo">If true, extracts the type and method name from the first non-ThrowEx frame.</param>
     /// <returns>A tuple containing the type name, method name, and full stack trace text.</returns>
-    internal static Tuple<string, string, string> PlaceOfException(bool shouldFillFirstTwo = true)
+    internal static Tuple<string, string, string> PlaceOfException(bool isShouldFillFirstTwo = true)
     {
         StackTrace stackTrace = new();
         var stackTraceText = stackTrace.ToString();
         var lines = stackTraceText.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
         lines.RemoveAt(0);
-        var i = 0;
+        var frameIndex = 0;
         string type = string.Empty;
         string methodName = string.Empty;
-        for (; i < lines.Count; i++)
+        for (; frameIndex < lines.Count; frameIndex++)
         {
-            var item = lines[i];
-            if (shouldFillFirstTwo)
+            var item = lines[frameIndex];
+            if (isShouldFillFirstTwo)
                 if (!item.StartsWith("   at ThrowEx"))
                 {
                     TypeAndMethodName(item, out type, out methodName);
-                    shouldFillFirstTwo = false;
+                    isShouldFillFirstTwo = false;
                 }
             if (item.StartsWith("at System."))
             {
@@ -100,22 +101,22 @@ internal sealed partial class Exceptions
     /// <summary>
     /// Creates a custom exception message with an optional prefix.
     /// </summary>
-    /// <param name="before">The prefix to prepend to the message.</param>
+    /// <param name="prefix">The prefix to prepend to the message.</param>
     /// <param name="message">The exception message.</param>
     /// <returns>The formatted exception message.</returns>
-    internal static string? Custom(string before, string message)
+    internal static string? Custom(string prefix, string message)
     {
-        return CheckBefore(before) + message;
+        return CheckBefore(prefix) + message;
     }
 
     /// <summary>
     /// Creates a "Not implemented method" exception message with an optional prefix.
     /// </summary>
-    /// <param name="before">The prefix to prepend to the message.</param>
+    /// <param name="prefix">The prefix to prepend to the message.</param>
     /// <returns>The formatted exception message.</returns>
-    internal static string? NotImplementedMethod(string before)
+    internal static string? NotImplementedMethod(string prefix)
     {
-        return CheckBefore(before) + "Not implemented method.";
+        return CheckBefore(prefix) + "Not implemented method.";
     }
     #endregion
 }
