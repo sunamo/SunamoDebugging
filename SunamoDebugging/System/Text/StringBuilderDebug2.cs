@@ -100,12 +100,6 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
 
         processBeforeValidity?.Invoke(stringBuilder);
 
-#if DEBUG
-        if (ActualJavaScriptAfterFormattingFilePath != null)
-        {
-            File.WriteAllText(ActualJavaScriptAfterFormattingFilePath, stringBuilder.ToString());
-        }
-#endif
 
         CheckValidity();
         return this;
@@ -137,7 +131,6 @@ public class StringBuilderDebug2 : DebugStringBuilderAbstract<StringBuilderDebug
     /// <returns>The current content.</returns>
     public override string ToString()
     {
-        var result = stringBuilder.ToString();
-        return result;
+        return stringBuilder.ToString();
     }
 }
