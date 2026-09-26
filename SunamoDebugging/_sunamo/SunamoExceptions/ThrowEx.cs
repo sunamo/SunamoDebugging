@@ -19,8 +19,7 @@ internal partial class ThrowEx
     internal static string FullNameOfExecutedCode()
     {
         Tuple<string, string, string> placeOfException = Exceptions.PlaceOfException();
-        string fullName = FullNameOfExecutedCode(placeOfException.Item1, placeOfException.Item2, true);
-        return fullName;
+        return FullNameOfExecutedCode(placeOfException.Item1, placeOfException.Item2, true);
     }
 
     /// <summary>
