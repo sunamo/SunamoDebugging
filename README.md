@@ -1,5 +1,10 @@
 # SunamoDebugging
 
+## Short description
+
+Pomocné třídy pro snazší ladění, vycházející z BCL a vlastního kódu.
+
+
 Some BCl+mine code's helper classes for easier debugging
 
 ## Overview
